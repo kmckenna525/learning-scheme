@@ -2,21 +2,12 @@
 --use-srfi=1 -e main -s
 !#
 
-(define (sum-list intList)
-  (if (null? intList)
-    0
-    (+ (car intList) (sum-list (cdr intList)))))
-
-(define (fizzify f)
-  (lambda (n)
-    (eqv? (remainder n f) 0)))
-
-(define (fizz? f n)
-  ((fizzify f) n))
+(load "lib/divides.scm")
+(load "lib/sum-list.scm")
 
 (define (fizzbuzz? fizzList n)
   (cond ((null? fizzList) #f)
-        ((fizz? (car fizzList) n) #t)
+        ((divides? (car fizzList) n) #t)
         (else (fizzbuzz? (cdr fizzList) n))))
 
 (define (num-listify stringList)
